@@ -126,6 +126,23 @@
             opacity: 1;
             pointer-events: auto;
         }
+        /* ===== Rolagem com ímã (scroll snap), só no computador =====
+           Cada seção vira um ponto de parada: uma rolada do mouse leva
+           até o começo da próxima, sem parar no meio do caminho. */
+        @media (min-width: 768px) {
+            html {
+                scroll-snap-type: y mandatory;   /* liga o ímã na rolagem vertical */
+                scroll-padding-top: 80px;        /* desconta a altura do menu fixo */
+            }
+            #carouselPortfolio,
+            section {
+                scroll-snap-align: start;        /* para no começo de cada seção */
+            }
+            footer {
+                scroll-snap-align: end;          /* deixa chegar até o rodapé */
+            }
+        }
+
         /* ===== Ajustes para celular (telas de até 767px) ===== */
         @media (max-width: 767px) {
             /* menos espaço entre as seções */
