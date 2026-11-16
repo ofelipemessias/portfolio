@@ -62,8 +62,12 @@
             border-radius: 50px;
             padding: 8px 22px;
             font-weight: 500;
+            border: none;
         }
-        .btn-contato:hover {
+        /* o Scrollspy marca o botão como "active" na seção Contato: fica verde */
+        .btn-contato:hover,
+        .btn-contato.active,
+        .btn-contato:active {
             background: var(--verde);
             color: #ffffff;
         }
@@ -185,7 +189,7 @@
         </button>
     </div>
 
-    <section id="perfil" class="bg-white min-vh-100 d-flex align-items-center py-5">
+    <section id="perfil" class="bg-white py-5">
         <div class="container py-4">
             <div class="row align-items-center g-5">
                 <div class="col-lg-4 text-center animar">
@@ -367,7 +371,7 @@
             </div>
         </div>
     </section>
-    <section id="contato" class="min-vh-100 d-flex align-items-center py-5">
+    <section id="contato" class="py-5">
         <div class="container py-4">
             <div class="text-center mb-5 animar">
                 <h2 class="text-primary fw-bold">Contato</h2>
