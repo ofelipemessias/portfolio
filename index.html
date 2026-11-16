@@ -126,6 +126,22 @@
             opacity: 1;
             pointer-events: auto;
         }
+        /* ===== Ajustes para celular (telas de até 767px) ===== */
+        @media (max-width: 767px) {
+            /* menos espaço entre as seções */
+            section { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            section > .container { padding-top: 0 !important; padding-bottom: 0 !important; }
+            section .text-center.mb-5 { margin-bottom: 1.5rem !important; }
+            /* foto do perfil menor */
+            .profile-img { width: 180px; height: 180px; }
+            /* textos um pouco menores */
+            #perfil .fs-5 { font-size: 1.05rem !important; }
+            /* menu aberto: links maiores para o dedo e botão em largura total */
+            .menu-marca .navbar-collapse { padding-top: 12px; }
+            .menu-marca .nav-link { padding: 10px 0; }
+            .menu-marca .nav-link::after { display: none; }
+            .btn-contato { display: block; text-align: center; margin-top: 8px; }
+        }
     </style>
 </head>
 
@@ -168,23 +184,35 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="imagens/slide1.png" class="d-block w-100" alt="Olá, eu sou Felipe Messias">
+                <!-- <picture>: no celular (até 767px) usa a versão quadrada do slide -->
+                <picture>
+                    <source media="(max-width: 767px)" srcset="imagens/slide1-mobile.png">
+                    <img src="imagens/slide1.png" class="d-block w-100" alt="Olá, eu sou Felipe Messias">
+                </picture>
             </div>
 
             <div class="carousel-item">
-                <img src="imagens/slide2.png" class="d-block w-100" alt="Tarefas repetitivas viram sistemas">
+                <!-- <picture>: no celular (até 767px) usa a versão quadrada do slide -->
+                <picture>
+                    <source media="(max-width: 767px)" srcset="imagens/slide2-mobile.png">
+                    <img src="imagens/slide2.png" class="d-block w-100" alt="Tarefas repetitivas viram sistemas">
+                </picture>
             </div>
 
             <div class="carousel-item">
-                <img src="imagens/slide3.png" class="d-block w-100" alt="Conheça meus projetos">
+                <!-- <picture>: no celular (até 767px) usa a versão quadrada do slide -->
+                <picture>
+                    <source media="(max-width: 767px)" srcset="imagens/slide3-mobile.png">
+                    <img src="imagens/slide3.png" class="d-block w-100" alt="Conheça meus projetos">
+                </picture>
             </div>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPortfolio" data-bs-slide="prev">
+        <button class="carousel-control-prev d-none d-md-flex" type="button" data-bs-target="#carouselPortfolio" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </button>
 
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselPortfolio" data-bs-slide="next">
+        <button class="carousel-control-next d-none d-md-flex" type="button" data-bs-target="#carouselPortfolio" data-bs-slide="next">
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
@@ -430,6 +458,15 @@
         const btnTopo = document.getElementById("btnTopo");
         window.addEventListener("scroll", function () {
             btnTopo.classList.toggle("mostrar", window.scrollY > 400);
+        });
+        // ===== Celular: fecha o menu depois de tocar em um link =====
+        document.querySelectorAll("#menu a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                const menuAberto = document.querySelector("#menu.show");
+                if (menuAberto) {
+                    bootstrap.Collapse.getOrCreateInstance(menuAberto).hide();
+                }
+            });
         });
     </script>
 </body>
